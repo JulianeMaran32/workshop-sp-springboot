@@ -6,13 +6,11 @@ import java.io.InputStreamReader;
 
 public class BufferedReaderExample {
 
-
     public static void main(String[] args) {
-        var reader = new BufferedReader(new InputStreamReader(System.in));
-
         System.out.print("Escreva um número de 0 a 10: ");
 
-        try{
+        try(var reader = new BufferedReader(new InputStreamReader(System.in))){
+
             var input = reader.readLine();
             var valueInput = Integer.valueOf(input);
 
@@ -20,7 +18,7 @@ public class BufferedReaderExample {
 
             System.out.println("O número que você colocou é: " + valueInput);
 
-        }catch (IOException e){
+        }catch (NumberFormatException | IOException e){
             throw new RuntimeException("Erro na leitura");
         }
     }
